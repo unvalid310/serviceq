@@ -33,8 +33,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
     super.dispose();
   }
 
+  // membuat fungsi memanggil data ulasan
   void _loadData() async {
-    // melakukan inisialisasi data favorit user
     Provider.of<UlasanProvider>(context, listen: false).getUlasanList();
   }
 
@@ -49,6 +49,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ),
       child: Consumer<UlasanProvider>(
         builder: (context, ulasanProvider, child) {
+          // preload sebelum menampilkan data ulasan
           return LoadingOverlay(
             isLoading: ulasanProvider.isLoading,
             child: Scaffold(
@@ -99,6 +100,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             SizedBox(height: 15),
                             InkWell(
                               onTap: () async {
+                                // memanggil fungsi logout
                                 await Provider.of<AuthProvider>(context,
                                         listen: false)
                                     .logout()
@@ -146,6 +148,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             SizedBox(height: 20),
                             (!ulasanProvider.isLoading)
                                 ? (ulasanProvider.ulasanList != null)
+                                    // menampilkan data ulasan
                                     ? ListView.separated(
                                         separatorBuilder: (context, index) =>
                                             SizedBox(height: 15),
@@ -263,6 +266,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                           );
                                         },
                                       )
+                                    // menampilkan pesan jika data ulasan tidak ada
                                     : Center(
                                         child: Text(
                                           'Tidak ada ulasan untuk ditampilkan',

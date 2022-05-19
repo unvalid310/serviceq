@@ -5,7 +5,6 @@ import 'package:serviceq/di_container.dart' as di;
 import 'package:serviceq/provider/filter_provider.dart';
 import 'package:serviceq/provider/rekomendasi_provider.dart';
 import 'package:serviceq/provider/tipe_bengkel_provider.dart';
-import 'package:serviceq/utill/app_constants.dart';
 import 'package:serviceq/utill/color_resources.dart';
 import 'package:serviceq/utill/styles.dart';
 import 'package:serviceq/view/screens/bengkel/bengkel_screen.dart';
@@ -27,6 +26,7 @@ class _RekomendasiScreenState extends State<RekomendasiScreen> {
     super.initState();
   }
 
+  // membuat fungsi memanggil data rekomendasi
   void loadData() async {
     await Provider.of<RekomendasiProvider>(context, listen: false)
         .getRekomendasiList();
@@ -35,6 +35,7 @@ class _RekomendasiScreenState extends State<RekomendasiScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // memanggil fungsi untuk menampilkan data rekomendasi
     loadData();
     return Container(
       decoration: BoxDecoration(
@@ -46,6 +47,7 @@ class _RekomendasiScreenState extends State<RekomendasiScreen> {
       child: Consumer<RekomendasiProvider>(
         builder: (context, rekomendasiProvider, child) {
           return LoadingOverlay(
+            // preloading sebelum data ditampilkan
             isLoading: rekomendasiProvider.isLoading,
             child: Scaffold(
               resizeToAvoidBottomInset: false,
@@ -99,6 +101,7 @@ class _RekomendasiScreenState extends State<RekomendasiScreen> {
                                   await showModalBottomSheet(
                                     context: context,
                                     builder: (_) {
+                                      // memanggil fungsi untuk menampilkan data filter
                                       Provider.of<TipeBengkelProvider>(context,
                                               listen: false)
                                           .getTipeBengkel();
@@ -110,6 +113,7 @@ class _RekomendasiScreenState extends State<RekomendasiScreen> {
                                               tipeBengkelProvider, child) {
                                             return (tipeBengkelProvider
                                                     .isLoading)
+                                                // preload sebelum menampilkan data filter
                                                 ? Center(
                                                     child:
                                                         CircularProgressIndicator(
@@ -118,6 +122,7 @@ class _RekomendasiScreenState extends State<RekomendasiScreen> {
                                                               .PRIMARY_COLOR,
                                                     ),
                                                   )
+                                                // menampilkan data filter
                                                 : ListView.separated(
                                                     shrinkWrap: true,
                                                     separatorBuilder:
@@ -203,6 +208,7 @@ class _RekomendasiScreenState extends State<RekomendasiScreen> {
                                       MediaQuery.of(context).size.height *
                                           10 /
                                           100),
+                                  // menampilkan data rekomendasi bengkel
                                   child: ListView.builder(
                                     itemCount:
                                         rekomendasiProvider.bengkelList.length,
@@ -211,6 +217,7 @@ class _RekomendasiScreenState extends State<RekomendasiScreen> {
                                         (BuildContext context, int index) {
                                       return InkWell(
                                         onTap: () {
+                                          // navigasi untuk menampilkan detail bengkel
                                           Navigator.push(
                                             context,
                                             MaterialPageRoute(
@@ -297,6 +304,7 @@ class _RekomendasiScreenState extends State<RekomendasiScreen> {
                                     },
                                   ),
                                 )
+                              // menampilkan pesan error ketika data tidak ada
                               : Center(
                                   child: Text(
                                     'Tidak ada rekomendasi untuk ditampilkan',

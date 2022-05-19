@@ -25,12 +25,14 @@ class _HomeScreenState extends State<HomeScreen> {
     super.dispose();
   }
 
+  // membuat fungsi memanggil data bengkel
   void loadData() async {
     await Provider.of<BengkelProvider>(context, listen: false).getBengekList();
   }
 
   @override
   Widget build(BuildContext context) {
+    // memanggil fungsi untuk menampilkan data bengkel
     loadData();
     return Container(
       decoration: BoxDecoration(
@@ -41,6 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       child: Consumer<BengkelProvider>(
         builder: (context, bengkelProvider, child) {
+          // preloading sebelum data ditampilkan
           return LoadingOverlay(
             isLoading: bengkelProvider.isLoading,
             child: Scaffold(
@@ -73,6 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       MediaQuery.of(context).size.height *
                                           10 /
                                           100),
+                                  // menampilkan data bengkel
                                   child: ListView.builder(
                                     itemCount:
                                         bengkelProvider.bengkelList.length,
@@ -81,6 +85,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         (BuildContext context, int index) {
                                       return InkWell(
                                         onTap: () {
+                                          // navigasi untuk menampilkan detail bengkel
                                           Navigator.push(
                                             context,
                                             MaterialPageRoute(
@@ -147,6 +152,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     },
                                   ),
                                 )
+                              // menampilkan pesan error ketika data tidak ada
                               : Center(
                                   child: Text(
                                     'Tidak ada data untuk ditampilkan',

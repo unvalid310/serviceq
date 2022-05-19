@@ -38,6 +38,9 @@ class _BengkelScreenState extends State<BengkelScreen> {
     super.dispose();
   }
 
+  // fungsi menampilkan
+  // Ulasan
+  // dan menambahkan kedalam history
   void preloadData() async {
     await Provider.of<RatingProvider>(context, listen: false).init();
     await Provider.of<UlasanProvider>(context, listen: false).init();

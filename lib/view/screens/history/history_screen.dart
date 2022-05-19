@@ -26,12 +26,14 @@ class _HistoryScreenState extends State<HistoryScreen> {
     super.dispose();
   }
 
+  // membuat fungsi memanggil data history
   void loadData() async {
     await Provider.of<HistoryProvider>(context, listen: false).getHistroyList();
   }
 
   @override
   Widget build(BuildContext context) {
+    // memanggil fungsi untuk menampilkan data history
     loadData();
     return Container(
       decoration: BoxDecoration(
@@ -43,6 +45,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
       child: Consumer<HistoryProvider>(
         builder: (context, historyProvider, child) {
           return LoadingOverlay(
+            // preloading sebelum data ditampilkan
             isLoading: historyProvider.isLoading,
             child: Scaffold(
               resizeToAvoidBottomInset: false,
@@ -65,6 +68,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                     ),
                     Expanded(
                       child: (!historyProvider.isLoading)
+                          // menampilkan data history
                           ? (historyProvider.historyList != null)
                               ? Container(
                                   margin: EdgeInsets.fromLTRB(
@@ -82,6 +86,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                                         (BuildContext context, int index) {
                                       return InkWell(
                                         onTap: () {
+                                          // navigasi untuk menampilkan data history
                                           Navigator.push(
                                             context,
                                             MaterialPageRoute(
@@ -179,6 +184,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                                     },
                                   ),
                                 )
+                              // menampilkan pesan error ketika data tidak ada
                               : Center(
                                   child: Text(
                                     'Tidak ada history unutuk ditampilkan',
