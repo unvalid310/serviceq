@@ -22,6 +22,7 @@ class RekomendasiRepo {
           'user_id': sharedPreferences.getString(AppConstants.ID_USER),
         },
       );
+      print('response>> ${response}');
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));

@@ -5,12 +5,15 @@ import 'package:provider/provider.dart';
 import 'package:serviceq/helper/router_helper.dart';
 import 'package:serviceq/provider/auth_provider.dart';
 import 'package:serviceq/provider/bengkel_provider.dart';
+import 'package:serviceq/provider/favorit_provider.dart';
 import 'package:serviceq/provider/filter_provider.dart';
 import 'package:serviceq/provider/history_provider.dart';
 import 'package:serviceq/provider/language_provider.dart';
 import 'package:serviceq/provider/localization_provider.dart';
+import 'package:serviceq/provider/lokasi_provider.dart';
 import 'package:serviceq/provider/rating_provider.dart';
 import 'package:serviceq/provider/rekomendasi_provider.dart';
+import 'package:serviceq/provider/sparepart_provider.dart';
 import 'package:serviceq/provider/theme_provider.dart';
 import 'package:serviceq/provider/tipe_bengkel_provider.dart';
 import 'package:serviceq/provider/ulasan_provider.dart';
@@ -36,6 +39,9 @@ Future<void> main() async {
         ChangeNotifierProvider(
             create: (context) => di.sl<LocalizationProvider>()),
         ChangeNotifierProvider(create: (context) => di.sl<AuthProvider>()),
+        ChangeNotifierProvider(create: (context) => di.sl<LokasiProvider>()),
+        ChangeNotifierProvider(create: (context) => di.sl<SparepartProvider>()),
+        ChangeNotifierProvider(create: (context) => di.sl<FavoritProvider>()),
         ChangeNotifierProvider(create: (context) => di.sl<BengkelProvider>()),
         ChangeNotifierProvider(
             create: (context) => di.sl<RekomendasiProvider>()),

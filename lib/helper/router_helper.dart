@@ -22,10 +22,12 @@ class RouterHelper {
       pageIndex: params['page'][0] == 'Home'
           ? 0
           : params['page'][0] == 'Rekomendasi'
-              ? 2
-              : params['page'][0] == 'history'
-                  ? 1
-                  : 0,
+              ? 1
+              : params['page'][0] == 'History'
+                  ? 2
+                  : params['page'][0] == 'Profile'
+                      ? 3
+                      : 0,
     );
   });
 

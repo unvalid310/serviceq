@@ -10,9 +10,11 @@ class RekomendasiProvider extends ChangeNotifier {
 
   List<BengkelModel> _bengkelList;
   bool _isLoading;
+  String _message;
 
   List<BengkelModel> get bengkelList => _bengkelList;
   bool get isLoading => _isLoading;
+  String get message => _message;
 
   Future<void> init() async {
     _isLoading = false;
@@ -22,16 +24,19 @@ class RekomendasiProvider extends ChangeNotifier {
     _isLoading = true;
     ApiResponse apiResponse = await rekomendasiRepo.getRekomendasiList();
     if (apiResponse.response.statusCode == 200) {
-      if (apiResponse.response.data != null) {
+      if (apiResponse.response.data['data'] != null) {
         _bengkelList = [];
         apiResponse.response.data['data'].forEach((bengkel) {
           _bengkelList.add(BengkelModel.fromJson(bengkel));
         });
+        _message = apiResponse.response.data['message'].toString();
       } else {
         _bengkelList = [];
+        _message = apiResponse.response.data['message'].toString();
       }
     } else {
       _bengkelList = [];
+      _message = "Terjadi Kesalahan";
     }
     _isLoading = false;
     notifyListeners();

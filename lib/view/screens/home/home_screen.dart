@@ -5,6 +5,7 @@ import 'package:serviceq/provider/bengkel_provider.dart';
 import 'package:serviceq/utill/color_resources.dart';
 import 'package:serviceq/utill/styles.dart';
 import 'package:serviceq/view/screens/bengkel/bengkel_screen.dart';
+import 'package:serviceq/view/screens/filtering/filtering_screen.dart';
 import 'package:sizer/sizer.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -63,6 +64,51 @@ class _HomeScreenState extends State<HomeScreen> {
                             fit: BoxFit.fitWidth,
                           ),
                         ),
+                        Container(
+                          padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
+                          width: double.infinity,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              InkWell(
+                                onTap: () async {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (_) => FilteringScreen(),
+                                    ),
+                                  );
+                                },
+                                child: Container(
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: 10, horizontal: 25),
+                                  alignment: Alignment.center,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    color: Color(0xFF0094F9),
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      Icon(
+                                        Icons.filter_alt,
+                                        size: 20,
+                                        color: ColorResources.COLOR_WHITE,
+                                      ),
+                                      SizedBox(width: 10),
+                                      Text(
+                                        'Fitering',
+                                        style: aladinBold.copyWith(
+                                          fontSize: 15,
+                                          color: ColorResources.COLOR_WHITE,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
                       ],
                     ),
                     Expanded(

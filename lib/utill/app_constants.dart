@@ -7,10 +7,12 @@ class AppConstants {
   static const API_KEY = 'AIzaSyC4pqaaJrDjDxxm2iU-SIn4bDTmlBOSK70';
 
   static const String BASE_URL = 'https://serviceq.havaernet.com';
-  // static const String BASE_URL = 'http://192.168.43.235/serviceq/public';
 
   static const String REGISTER_URI = '/auth/registration';
   static const String LOGIN_URI = '/auth/login';
+  static const String FAVORIT_URI = '/favorit';
+  static const String LOKASI_URI = '/lokasi';
+  static const String SPAREPART_URI = '/sparepart';
   static const String BENGKEL_URI = '/bengkel';
   static const String TIPE_BENGKEL_URI = '/tipebengkel';
   static const String FILTER_URI = '/filter';

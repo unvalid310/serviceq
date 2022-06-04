@@ -307,7 +307,7 @@ class _RekomendasiScreenState extends State<RekomendasiScreen> {
                               // menampilkan pesan error ketika data tidak ada
                               : Center(
                                   child: Text(
-                                    'Tidak ada rekomendasi untuk ditampilkan',
+                                    rekomendasiProvider.message,
                                     style: aladinMedium.copyWith(
                                       fontSize: 20,
                                       color: Color(0xFF73C3F9),
